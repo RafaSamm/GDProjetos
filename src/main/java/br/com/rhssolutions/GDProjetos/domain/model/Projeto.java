@@ -15,16 +15,16 @@ public class Projeto {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
+    @Column(unique = true)
     private String nome;
 
-    @Column(columnDefinition = "TEXT", nullable = false)
+    @Column(columnDefinition = "TEXT")
     private String descricao;
 
-    @Column(nullable = false, name = "data_inicio")
+    @Column(name = "data_inicio")
     private LocalDate dataInicio;
 
-    @Column(nullable = false, name = "data_fim")
+    @Column(name = "data_fim")
     private LocalDate dataFim;
 
     @Enumerated(EnumType.STRING)

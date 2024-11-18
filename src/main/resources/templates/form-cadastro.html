@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pt-br"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro</title>
+
+</head>
+<body>
+<h1 class="mb-4">Cadastro de projetos</h1>
+<form role="form"
+      method="post"
+      th:action="@{/projetos}"
+      th:object="${projeto}">
+
+    <label>Nome:</label>
+    <label><input type="text" th:field="*{nome}" required></label><br>
+    <label>Descrição:</label>
+    <label><textarea cols="25" rows="5" th:field="*{descricao}" required></textarea></label><br>
+    <label>Data Início:<input type="date" th:field="*{dataInicio}" required></label><br>
+    <label>Data Fim:<input type="date" th:field="*{dataFim}" required></label><br>
+    <label>Status:
+        <select th:field="*{status}" required>
+            <option value="" disabled selected>Selecione um status</option>
+            <option th:each="st: ${statusProjeto}"
+                    th:value="${st}"
+                    th:text="${st}"></option>
+        </select>
+    </label><br>
+    <button type="submit">Registrar</button>
+
+</form>
+
+</body>
+</html>
