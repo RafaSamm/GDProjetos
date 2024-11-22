@@ -1,41 +1,38 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/lista.css}">
     <title>Projetos</title>
 </head>
 <body>
-    <h1>Lista de Projetos Registrados</h1>
+<h1>Lista de Projetos Registrados</h1>
+<a href="http://localhost:8080/projetos/novo"><button>Voltar</button></a>
 
-    <table>
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Nome</th>
-                <th>Descrição</th>
-                <th>Data Início</th>
-                <th>Data Fim</th>
-                <th>Status</th>
-                <th>Ações</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr th:each="p: ${projeto}">
-                <td th:text="${p.id}"></td>
-                <td th:text="${p.nome}"></td>
-                <td th:text="${p.descricao}"></td>
-                <td th:text="${p.dataInicio}"></td>
-                <td th:text="${p.dataFim}"></td>
-                <td th:text="${p.status}"></td>
-            </tr>
-        </tbody>
-
-
-
-    </table>
-
-
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Nome</th>
+        <th>Descrição</th>
+        <th>Data Início</th>
+        <th>Data Fim</th>
+        <th>Status</th>
+        <th>Ações</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="p: ${projeto}">
+        <td th:text="${p.id}"></td>
+        <td th:text="${p.nome}"></td>
+        <td th:text="${p.descricao}"></td>
+        <td th:text="${p.dataInicio}"></td>
+        <td th:text="${p.dataFim}"></td>
+        <td th:text="${p.status}"></td>
+    </tr>
+    </tbody>
+</table>
 
 
 </body>
