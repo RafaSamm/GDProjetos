@@ -8,7 +8,9 @@
 </head>
 <body>
 <h1>Lista de Projetos Registrados</h1>
-<a href="http://localhost:8080/projetos/novo"><button>Voltar</button></a>
+<a href="http://localhost:8080/projetos/novo">
+    <button>Voltar</button>
+</a>
 
 <table>
     <thead>
@@ -30,6 +32,12 @@
         <td th:text="${p.dataInicio}"></td>
         <td th:text="${p.dataFim}"></td>
         <td th:text="${p.status}"></td>
+        <td>
+            <form th:action="@{/projetos/{id}(id=${p.id})}" method="post">
+                <button type="submit">Excluir</button>
+            </form>
+
+        </td>
     </tr>
     </tbody>
 </table>

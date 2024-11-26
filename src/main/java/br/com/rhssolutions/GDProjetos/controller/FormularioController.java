@@ -5,13 +5,7 @@ import br.com.rhssolutions.GDProjetos.domain.model.Status;
 import br.com.rhssolutions.GDProjetos.service.ProjetosService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
-import java.nio.channels.ScatteringByteChannel;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping("/projetos")
@@ -43,6 +37,12 @@ public class FormularioController {
     public String listarProjetos(Model model) {
         model.addAttribute("projeto", projetosService.lista());
         return "projetos";
+    }
+
+    @PostMapping("/{id}")
+    public String excluirProjeto(@PathVariable Long id) {
+        projetosService.excluirPorId(id);
+        return "redirect:/projetos/listar";
     }
 
 }
