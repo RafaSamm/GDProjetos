@@ -45,4 +45,20 @@ public class FormularioController {
         return "redirect:/projetos/listar";
     }
 
+    @GetMapping("/editar/{id}")
+    public String editarProjeto(@PathVariable Long id, Model model) {
+        var projeto = projetosService.buscarPorId(id);
+        model.addAttribute("projeto", projeto);
+        model.addAttribute("statusProjeto", Status.values());
+        return "form-cadastro";
+    }
+
+    @PostMapping("/editar/{id}")
+    public String atualizarProjeto(@PathVariable Long id, @ModelAttribute("projeto") Projeto projeto) {
+        projetosService.atualizar(id, projeto);
+        projetosService.salvar(projeto);
+        return "redirect:/projetos/listar";
+
+    }
+
 }

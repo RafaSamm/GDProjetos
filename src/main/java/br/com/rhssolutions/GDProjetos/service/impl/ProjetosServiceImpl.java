@@ -33,5 +33,22 @@ public class ProjetosServiceImpl implements ProjetosService {
         projetosRepository.delete(projeto);
     }
 
+    public Projeto buscarPorId(Long id) {
+        var projeto = projetosRepository.findById(id).orElseThrow(()
+                -> new IllegalArgumentException("Projeto não encontrado"));
+        return projeto;
+    }
+
+    public Projeto atualizar(Long id, Projeto projetoAtualizado) {
+        var projetoAtual = buscarPorId(id);
+        projetoAtual.setNome(projetoAtualizado.getNome());
+        projetoAtual.setDescricao(projetoAtualizado.getDescricao());
+        projetoAtual.setDataInicio(projetoAtualizado.getDataInicio());
+        projetoAtual.setDataFim(projetoAtualizado.getDataFim());
+        projetoAtual.setStatus(projetoAtualizado.getStatus());
+        return projetosRepository.save(projetoAtual);
+
+    }
+
 
 }

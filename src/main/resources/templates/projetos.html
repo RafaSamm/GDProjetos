@@ -34,8 +34,13 @@
         <td th:text="${p.status}"></td>
         <td>
             <form th:action="@{/projetos/{id}(id=${p.id})}" method="post">
-                <button type="submit">Excluir</button>
+                <button type="submit" id="excluir">Excluir</button>
             </form>
+            <form th:action="@{/projetos/editar/{id}(id=${p.id})}" method="post">
+                <!--TODO <button type="submit" id="editar">Editar</button> -->
+            </form>
+
+
 
         </td>
     </tr>

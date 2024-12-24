@@ -8,4 +8,8 @@ public interface ProjetosService {
     Projeto salvar(Projeto projeto);
 
     void excluirPorId(Long id);
+
+    Projeto buscarPorId(Long id);
+
+    Projeto atualizar(Long id, Projeto projeto);
 }
