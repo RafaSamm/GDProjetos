@@ -7,9 +7,9 @@ public interface ProjetosService {
 
     Projeto salvar(Projeto projeto);
 
-    void excluirPorId(Long id);
+    Projeto atualizar(Long id, Projeto projeto);
 
     Projeto buscarPorId(Long id);
 
-    Projeto atualizar(Long id, Projeto projeto);
+    void excluirPorId(Long id);
 }
