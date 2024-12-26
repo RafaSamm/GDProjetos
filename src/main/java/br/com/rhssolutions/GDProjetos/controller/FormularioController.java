@@ -6,6 +6,7 @@ import br.com.rhssolutions.GDProjetos.service.ProjetosService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @RequestMapping("/projetos")
@@ -39,9 +40,14 @@ public class FormularioController {
         return "projetos";
     }
 
-    @PostMapping("/{id}")
-    public String excluirProjeto(@PathVariable Long id) {
-        projetosService.excluirPorId(id);
+    @DeleteMapping("/{id}")
+    public String excluirProjeto(@PathVariable Long id, RedirectAttributes redirectAttributes) {
+        try {
+            projetosService.excluirPorId(id);
+            redirectAttributes.addFlashAttribute("mensagem", "Projeto excluído com sucesso!");
+        } catch (RuntimeException e) {
+            redirectAttributes.addFlashAttribute("erro", "Erro ao excluir o projeto: " + e.getMessage());
+        }
         return "redirect:/projetos/listar";
     }
 
@@ -53,12 +59,11 @@ public class FormularioController {
         return "form-cadastro";
     }
 
-    @PostMapping("/editar/{id}")
+    @PutMapping("/editar/{id}")
     public String atualizarProjeto(@PathVariable Long id, @ModelAttribute("projeto") Projeto projeto) {
         projetosService.atualizar(id, projeto);
         projetosService.salvar(projeto);
         return "redirect:/projetos/listar";
-
     }
 
 }

@@ -20,6 +20,9 @@ public class ProjetosServiceImpl implements ProjetosService {
         if (projetosRepository.findByNome(projeto.getNome()).isPresent()) {
             throw new IllegalArgumentException("Projeto já cadastrado com este nome!!");
         }
+        if (projeto.getDataInicio().isAfter(projeto.getDataFim())) {
+            throw new IllegalArgumentException("Data de início não pode ser maior que a data de fim");
+        }
         return projetosRepository.save(projeto);
     }
 
@@ -34,9 +37,8 @@ public class ProjetosServiceImpl implements ProjetosService {
     }
 
     public Projeto buscarPorId(Long id) {
-        var projeto = projetosRepository.findById(id).orElseThrow(()
+        return projetosRepository.findById(id).orElseThrow(()
                 -> new IllegalArgumentException("Projeto não encontrado"));
-        return projeto;
     }
 
     public Projeto atualizar(Long id, Projeto projetoAtualizado) {
@@ -46,8 +48,12 @@ public class ProjetosServiceImpl implements ProjetosService {
         projetoAtual.setDataInicio(projetoAtualizado.getDataInicio());
         projetoAtual.setDataFim(projetoAtualizado.getDataFim());
         projetoAtual.setStatus(projetoAtualizado.getStatus());
-        return projetosRepository.save(projetoAtual);
 
+        if (projetoAtualizado.getDataInicio().isAfter(projetoAtualizado.getDataFim())) {
+            throw new IllegalArgumentException("Data de início não pode ser maior que a data de fim");
+        }
+
+        return projetosRepository.save(projetoAtual);
     }
 
 
