@@ -102,3 +102,11 @@ a button:hover {
 #editar:hover {
     background-color: #EEAD2D;
 }
+
+footer {
+    text-align: center;
+    font-size: 14px;
+    color: black;
+    padding: 10px 0;
+    background-color: gray;
+}
